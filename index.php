@@ -35,20 +35,25 @@ $games = [
     <meta name="description" content="Квизы MindGames в Кишиневе: соберите команду 2–10 человек, выберите ближайшую игру в расписании и зарегистрируйтесь.">
     <style>
         :root {
-            --bg: #09081b;
-            --bg-soft: #141136;
-            --text: #f6f5ff;
-            --muted: #d0cdea;
-            --card: #ffffff;
-            --card-text: #171627;
-            --pink: #ff3ea6;
-            --orange: #ff8a3d;
-            --violet: #6b4dff;
-            --blue: #1f3bce;
-            --yellow: #ffd54d;
-            --radius: 20px;
-            --shadow: 0 18px 40px rgba(6, 5, 18, 0.35);
-            --gradient: linear-gradient(135deg, var(--pink), var(--orange) 38%, var(--violet) 72%, var(--blue));
+            --bg: #120f2c;
+            --bg-soft: #1b1740;
+            --bg-section: #18143a;
+            --surface: rgba(245, 240, 255, 0.9);
+            --surface-soft: rgba(240, 233, 255, 0.72);
+            --text: #f8f6ff;
+            --muted: #cbc4ed;
+            --card-text: #2a244a;
+            --pink: #ff4fb0;
+            --orange: #ff8f57;
+            --violet: #7f62ff;
+            --blue: #4a6dff;
+            --yellow: #ffd971;
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --radius-sm: 14px;
+            --shadow-soft: 0 16px 34px rgba(17, 11, 49, 0.25);
+            --shadow-lift: 0 24px 56px rgba(8, 5, 29, 0.34);
+            --gradient-brand: linear-gradient(130deg, var(--pink), var(--orange) 32%, var(--violet) 70%, var(--blue));
         }
 
         * { box-sizing: border-box; }
@@ -57,19 +62,32 @@ $games = [
             margin: 0;
             font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
             color: var(--text);
-            background: radial-gradient(circle at 10% -10%, rgba(255, 62, 166, 0.16), transparent 30%),
-                        radial-gradient(circle at 90% 10%, rgba(107, 77, 255, 0.24), transparent 24%),
+            background: radial-gradient(circle at 15% -12%, rgba(255, 79, 176, 0.24), transparent 34%),
+                        radial-gradient(circle at 90% 8%, rgba(127, 98, 255, 0.3), transparent 28%),
+                        radial-gradient(circle at 70% 35%, rgba(74, 109, 255, 0.14), transparent 33%),
                         var(--bg);
-            line-height: 1.55;
+            line-height: 1.6;
         }
 
         .container { width: min(1120px, 92vw); margin: 0 auto; }
         section { padding: 72px 0; }
 
         .hero {
-            padding: 36px 0 80px;
+            padding: 38px 0 88px;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -120px auto auto -140px;
+            width: 400px;
+            aspect-ratio: 1;
+            border-radius: 46% 54% 60% 40%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 143, 87, 0.52), rgba(255, 79, 176, 0.28) 48%, transparent 76%);
+            filter: blur(10px);
+            z-index: -1;
         }
         .hero::after {
             content: "";
@@ -77,7 +95,7 @@ $games = [
             inset: auto -220px -280px auto;
             width: 520px;
             aspect-ratio: 1;
-            background: var(--gradient);
+            background: var(--gradient-brand);
             border-radius: 40% 60% 50% 50% / 55% 45% 55% 45%;
             opacity: 0.55;
             filter: blur(20px);
@@ -90,16 +108,16 @@ $games = [
             display: inline-flex;
             padding: 8px 14px;
             border-radius: 999px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(242, 236, 255, 0.16);
+            border: 1px solid rgba(255,255,255,0.22);
             font-weight: 600;
             font-size: .86rem;
         }
 
-        h1, h2, h3 { margin: 0 0 14px; line-height: 1.15; }
-        h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+        h1, h2, h3 { margin: 0 0 14px; line-height: 1.13; letter-spacing: -0.01em; }
+        h1 { font-size: clamp(2.1rem, 5vw, 3.7rem); max-width: 19ch; }
         h2 { font-size: clamp(1.6rem, 4vw, 2.6rem); }
-        p { margin: 0 0 14px; color: var(--muted); }
+        p { margin: 0 0 14px; color: var(--muted); max-width: 66ch; }
 
         .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
         .btn {
@@ -107,85 +125,89 @@ $games = [
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 48px;
-            padding: 0 20px;
-            border-radius: 14px;
+            min-height: 52px;
+            padding: 0 24px;
+            border-radius: 16px;
             font-weight: 700;
-            transition: .2s ease;
+            transition: .22s ease;
         }
         .btn-primary {
-            background: var(--gradient);
+            background: var(--gradient-brand);
             color: #fff;
-            box-shadow: 0 10px 28px rgba(255, 62, 166, 0.35);
+            box-shadow: 0 14px 30px rgba(255, 79, 176, 0.36);
         }
-        .btn-primary:hover { transform: translateY(-1px); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 34px rgba(255, 79, 176, 0.4); }
         .btn-secondary {
             color: #fff;
-            border: 1px solid rgba(255,255,255,0.28);
-            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(242, 236, 255, 0.1);
         }
+        .btn-secondary:hover { background: rgba(242, 236, 255, 0.18); transform: translateY(-1px); }
 
         .hero-card {
-            border-radius: var(--radius);
-            background: linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.02));
-            border: 1px solid rgba(255,255,255,.22);
-            padding: 20px;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            background: linear-gradient(160deg, rgba(255,255,255,.24), rgba(255,255,255,.06));
+            border: 1px solid rgba(255,255,255,.26);
+            padding: 22px;
+            box-shadow: var(--shadow-lift);
+            backdrop-filter: blur(12px);
         }
         .hero-points { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
         .point {
             padding: 14px;
-            border-radius: 14px;
-            background: rgba(9,8,27,0.4);
-            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: var(--radius-sm);
+            background: rgba(25, 20, 60, 0.46);
+            border: 1px solid rgba(255,255,255,0.16);
             color: #fff;
             font-weight: 600;
             font-size: .95rem;
         }
 
         .panel {
-            background: #fff;
+            background: linear-gradient(160deg, var(--surface), var(--surface-soft));
             color: var(--card-text);
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             padding: 26px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(255,255,255,0.35);
         }
         .grid-3 { display:grid; gap:16px; grid-template-columns: repeat(3,minmax(0,1fr)); }
         .grid-2 { display:grid; gap:16px; grid-template-columns: repeat(2,minmax(0,1fr)); }
 
-        .hook { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); }
+        .hook { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.015)); }
         .timeline { display:grid; gap:12px; margin-top:22px; }
         .timeline li {
             list-style:none;
-            background: rgba(255,255,255,.06);
-            border: 1px solid rgba(255,255,255,.12);
-            border-radius: 14px;
+            background: rgba(247, 242, 255, .1);
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: var(--radius-sm);
             padding: 12px 14px;
         }
 
         .card {
-            border-radius: 16px;
-            padding: 18px;
-            background: #fff;
-            color: #181634;
-            box-shadow: 0 10px 28px rgba(24,22,52,0.12);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            background: linear-gradient(170deg, rgba(248, 244, 255, 0.98), rgba(238, 232, 255, 0.9));
+            color: #1f1a3f;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 12px 26px rgba(25, 18, 63, 0.13);
         }
 
-        .steps .card { position: relative; padding-top: 44px; }
+        .steps .card { position: relative; padding-top: 56px; min-height: 172px; }
         .steps .num {
             position: absolute;
-            top: 14px;
-            left: 14px;
-            width: 24px;
-            height: 24px;
+            top: 16px;
+            left: 16px;
+            width: 34px;
+            height: 34px;
             border-radius: 999px;
             display: grid;
             place-items: center;
             font-size: 12px;
             font-weight: 700;
-            background: var(--gradient);
+            background: var(--gradient-brand);
             color: #fff;
+            box-shadow: 0 8px 20px rgba(129, 95, 255, 0.3);
         }
 
         .gallery {
@@ -196,8 +218,8 @@ $games = [
         }
         .shot {
             border-radius: 16px;
-            background: linear-gradient(160deg, #fff 0%, #f3efff 100%);
-            color: #252042;
+            background: linear-gradient(145deg, rgba(255,255,255,.74), rgba(240, 232, 255, .66)), var(--gradient-brand);
+            color: #211b43;
             padding: 16px;
             display:flex;
             align-items:flex-end;
@@ -206,35 +228,38 @@ $games = [
         }
         .shot:first-child { grid-row: span 2; }
 
-        #schedule { background: linear-gradient(180deg, rgba(255,62,166,.15), rgba(31,59,206,.12)); }
+        #schedule { background: linear-gradient(180deg, rgba(255,79,176,.18), rgba(74,109,255,.14)); }
         .schedule-grid { display:grid; gap:14px; }
         .schedule-item {
-            background: #fff;
-            color: #191734;
-            border-radius: 16px;
-            padding: 16px;
+            background: linear-gradient(160deg, rgba(248,244,255,0.98), rgba(238,232,255,0.92));
+            color: #1d1840;
+            border-radius: var(--radius-md);
+            padding: 18px;
             display:grid;
             grid-template-columns: 1fr auto;
             gap: 10px 18px;
             align-items:center;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 14px 30px rgba(23, 16, 56, 0.15);
         }
         .schedule-meta { color:#5f5b7d; font-size:.95rem; }
 
         details {
-            background: rgba(255,255,255,.08);
-            border: 1px solid rgba(255,255,255,.14);
-            border-radius: 14px;
+            background: rgba(247,241,255,.1);
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: var(--radius-sm);
             padding: 12px 14px;
         }
         details + details { margin-top: 10px; }
         summary { cursor:pointer; font-weight:600; }
 
         .final-cta {
-            background: var(--gradient);
-            border-radius: 24px;
+            background: var(--gradient-brand);
+            border-radius: 28px;
             padding: 36px;
             color: #fff;
             text-align: center;
+            box-shadow: var(--shadow-lift);
         }
         .footer { padding: 28px 0 86px; color:#a7a1cc; font-size:.92rem; }
 
